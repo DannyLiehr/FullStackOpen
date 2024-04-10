@@ -1,3 +1,5 @@
+import './App.css';
+
 const Header = (props) => {
   return (
       <h2>{props.course}</h2>
@@ -6,7 +8,7 @@ const Header = (props) => {
 
 const Courses = (props) => {
   return (
-      <div>
+      <div id="course">
         <h2>Available Courses</h2>
         <ul>
           { 
@@ -14,7 +16,6 @@ const Courses = (props) => {
               return(
                 <li key={idx}>{item.name} - Exercises: {item.exercises}</li>
               )
-              
             })
           }
         </ul>
@@ -45,7 +46,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div id="wrapper">
       <Header course={courseMap.name}/>
       <Courses crs={courseMap.classes}/>
       <p>Total Exercises: <Total tot={courseMap.classes} /></p>
