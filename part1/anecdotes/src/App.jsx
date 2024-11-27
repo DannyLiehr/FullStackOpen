@@ -12,28 +12,39 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
-  const [selected, setSelected] = useState(0)
+
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));   
+  const [selected, setSelected] = useState(0);
+  const [bestVoted, setBestVoted] = useState('Nothing. ):');
 
   function chooseRandom() {
     setSelected(Math.floor(Math.random() * anecdotes.length))
   }
 
-  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
-
   function voteAnecdote() {
     const copy = [...votes]
     copy[selected]++;
     setVotes(copy);
+
+    const highestIndex = copy.indexOf(Math.max(...copy));
+    setBestVoted(anecdotes[highestIndex]);
+    
   }
 
   return (
+    <>
     <div>
-      {anecdotes[selected]}
+    <h1>Anecdote of the day</h1>
+    <blockquote> {anecdotes[selected]} </blockquote>
       <br/>
-      <button onClick={()=> voteAnecdote()}>Vote {votes[selected]}</button>
-      <button onClick={() => chooseRandom()}>Tell me more?</button>
+      <button onClick={()=> voteAnecdote()}><i className="fa fa-thumbs-up" aria-hidden="true"></i> {votes[selected]}</button>
+      <button onClick={() => chooseRandom()}>Another!</button>
     </div>
+    <div>
+    <h2><i className="fa fa-heart" aria-hidden="true"></i> We loved these anecdotes the most:</h2>
+    <p>{bestVoted}</p>
+    </div>
+    </>
   )
 }
 
