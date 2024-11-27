@@ -34,7 +34,7 @@ const App = () => {
   return (
     <>
     <div>
-    <h1>Anecdote of the day</h1>
+    <h1><i className="fa fa-commenting" aria-hidden="true"></i> Anecdote of the Day</h1>
     <blockquote> {anecdotes[selected]} </blockquote>
       <br/>
       <button onClick={()=> voteAnecdote()}><i className="fa fa-thumbs-up" aria-hidden="true"></i> {votes[selected]}</button>
