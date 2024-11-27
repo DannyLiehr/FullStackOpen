@@ -19,10 +19,19 @@ const App = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
   }
 
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
+
+  function voteAnecdote() {
+    const copy = [...votes]
+    copy[selected]++;
+    setVotes(copy);
+  }
+
   return (
     <div>
       {anecdotes[selected]}
       <br/>
+      <button onClick={()=> voteAnecdote()}>Vote {votes[selected]}</button>
       <button onClick={() => chooseRandom()}>Tell me more?</button>
     </div>
   )
